@@ -37,6 +37,7 @@ void setup()
   pinMode(Trigger, OUTPUT);
   pinMode(Echo, INPUT);
   pinMode(touch, INPUT);
+  Serial.begin(9600);
 }
 
 void Green()
@@ -71,48 +72,60 @@ void loop()
 
     if (count == 1)
     {
+      Serial.println("Walk Forward");
       Green();
-      robot.walk(2, 1000, 1);
+      robot.walk(5, 1000, 1);
+      robot.home();
     }
 
     if (count == 2)
     {
+      Serial.println("Walk Back");
       Red();
-      robot.walk(2, 1000, -1);
+      robot.walk(4, 1000, -1);
+      robot.home();
     }
 
     if (count == 3)
     {
+      Serial.println("Turn Left");
       Blue();
-      robot.turn(2, 1000, 1);
+      robot.turn(4, 1000, 1);
       delay(100);
-      robot.turn(2, 1000, -1);
+      Serial.println("Turn Left");
+      robot.turn(4, 1000, -1);
+      robot.home();
     }
 
 
     if (count == 4)
     {
-      robot._tone(10, 3, 1);
+      Serial.println("tone and bendTones");
+      robot._tone(20, 3, 1);
       robot.bendTones (100, 200, 1.04, 10, 10);
       delay(100);
+      robot.home();
     }
 
     if (count == 5)
     {
-      robot.bend (1, 500, 1);
-      robot.bend (1, 2000, -1);
+      Serial.println("bend ");
+      robot.bend (2, 500, 1);
+      robot.bend (2, 2000, -1);
       delay(100);
     }
 
     if (count == 6)
     {
-      robot.moonwalker(3, 1000, 25, 1);
-      robot.moonwalker(3, 1000, 25, -1);
+      Serial.println("moon walker");
+      robot.moonwalker(5, 1000, 25, 1);
+      robot.moonwalker(5, 1000, 25, -1);
       delay(100);
     }
 
     if (count == 7)
     {
+      Serial.println("crusaito");
       robot.crusaito(2, 1000, 20, 1);
       robot.crusaito(2, 1000, 20, -1);
       delay(100);
@@ -120,6 +133,7 @@ void loop()
 
     if (count == 8)
     {
+      Serial.println("flapping");
       robot.flapping(2, 1000, 20, 1);
       robot.flapping(2, 1000, 20, -1);
       delay(100);
@@ -127,31 +141,37 @@ void loop()
 
     if (count == 9)
     {
+      Serial.println("swing");
       robot.swing(2, 1000, 20);
       delay(100);
     }
 
     if (count == 10)
     {
+      Serial.println("tiptoeSwing");
       robot.tiptoeSwing(2, 1000, 20);
+      Serial.println("jitter");
       robot.jitter(2, 1000, 20);
       delay(100);
     }
 
     if (count == 11)
     {
+      Serial.println("updown");
       robot.updown(2, 1500, 20);
       delay(100);
     }
 
     if (count == 12)
     {
+      Serial.println("ascendingTurn");
       robot.ascendingTurn(2, 1000, 50);
       delay(100);
     }
 
     if (count == 13)
     {
+      Serial.println("shakeLeg");
       robot.shakeLeg (1, 1500, 1);
       delay(100);
       robot.home();
